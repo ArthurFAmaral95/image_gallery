@@ -6,36 +6,38 @@ const overlay = document.querySelector('.overlay');
 
 /* Declaring the array of image filenames */
 
-const images = ["./images/pic1.jpg", "./images/pic2.jpg", "./images/pic3.jpg", "./images/pic4.jpg", "./images/pic5.jpg"];
+const images = ["pic1.jpg", "pic2.jpg", "pic3.jpg", "pic4.jpg", "pic5.jpg"];
 
 /* Declaring the alternative text for each image file */
 
 const altText = {
-  "./images/pic1.jpg": "Closeup of a human eye",
-  "./images/pic2.jpg": "Picture of a rock seen from above",
-  "./images/pic3.jpg": "Closeup of white and purple flowers",
-  "./images/pic4.jpg": "Image of egyptians drawings",
-  "./images/pic5.jpg": "Closeup of a insect",
+  "pic1.jpg" : "Closeup of a human eye",
+  "pic2.jpg" : "Picture of a rock seen from above",
+  "pic3.jpg": "Closeup of white and purple flowers",
+  "pic4.jpg": "Image of egyptians drawings",
+  "pic5.jpg": "Closeup of a insect"
 };
 
 /* Looping through images */
 
 for (const image of images) {
   const newImage = document.createElement('img');
-  newImage.setAttribute('src', image);
-  //newImage.setAttribute('alt', xxx);
+  newImage.setAttribute('src', `./images/${image}`);
+  newImage.setAttribute('alt', altText[image]);
   thumbBar.appendChild(newImage);
 
-  newImage.addEventListener("click", () =>{
-    displayedImage.setAttribute('src', image);
-  });
+  /*newImage.addEventListener("click", () =>{
+    displayedImage.setAttribute('src', `./images/${image}`);
+    displayedImage.alt = altText[image];
+  });*/
 }
 
-/* Adding event listenner 
+/* Adding event listenner */
 
 thumbBar.addEventListener("click", (event) => {
-  displayedImage.src = event.currentTarget.src
-})*/
+  displayedImage.src = event.target.getAttribute("src");
+  displayedImage.alt = event.target.getAttribute("alt");
+})
 
 
 /* Wiring up the Darken/Lighten button */
